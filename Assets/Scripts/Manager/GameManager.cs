@@ -34,7 +34,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject Clicker = null;
     [SerializeField] private GameObject Matching = null;
     [SerializeField] private GameObject TutorialUI = null;
+    [SerializeField] private GameObject HolJack = null;
     [SerializeField] private GameObject[] tutorial = null;
+    
 
     [Header("µ· °ü¸®")]
     public int coinMoney = 10000;
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetInt("CoinMoney", coinMoney);
-        Debug.Log(PlayerPrefs.GetInt("CoinMoney"));
+
     }
 
     public void Load()
@@ -51,9 +53,11 @@ public class GameManager : MonoBehaviour
         coinMoney = PlayerPrefs.GetInt("CoinMoney");
     }
 
+
     void Start()
     {
-       // AudioManager.instance.PlayBgm();
+        // AudioManager.instance.PlayBgm();
+        InvokeRepeating("Save", 0f, 10f);
         Load();
         Blackjack.GetComponent<CanvasGroup>().alpha = 0;
         Blackjack.GetComponent<CanvasGroup>().interactable = false;
@@ -72,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Load();
         if (_instance == null)
         {
             _instance = this;
@@ -192,6 +197,18 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.PlayClickSound();
         Clicker.SetActive(false);
+        selectUI.SetActive(true);
+    }
+    public void OnClickHolJack()
+    {
+        AudioManager.instance.PlayClickSound();
+        HolJack.SetActive(true);
+        selectUI.SetActive(false);
+    }
+    public void OnClickHolJackOut()
+    {
+        AudioManager.instance.PlayClickSound();
+        HolJack.SetActive(false);
         selectUI.SetActive(true);
     }
 

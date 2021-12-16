@@ -47,9 +47,10 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         Load();
+        InvokeRepeating("Save", 0f, 10f);
     }
 
     void Update()
