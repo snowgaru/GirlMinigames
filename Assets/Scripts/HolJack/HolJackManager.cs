@@ -196,6 +196,7 @@ public class HolJackManager : MonoBehaviour
 
     public void CharMove()
     {
+        AudioManager.instance.PlayDice();
         Character.transform.DOMoveX(5.5f, 3f).SetEase(Ease.InSine).OnComplete(()=>ShowWinPanel());
     }
 

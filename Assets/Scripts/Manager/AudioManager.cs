@@ -16,7 +16,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip audioMatch;
     public AudioSource cardSoure;
     public AudioClip audioCard;
-
+    public AudioSource diceSource;
+    public AudioClip audioDice;
     public static AudioManager instance;
 
     void Awake()
@@ -54,5 +55,10 @@ public class AudioManager : MonoBehaviour
     public void PlayCardSound()
     {
         cardSoure.PlayOneShot(audioCard);
+    }
+
+    public void PlayDice()
+    {
+        diceSource.PlayOneShot(audioDice);
     }
 }
